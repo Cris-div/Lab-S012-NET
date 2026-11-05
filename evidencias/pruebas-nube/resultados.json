@@ -1,0 +1,2098 @@
+{
+  "baseUrl": "https://veterinaria-s12-cris.onrender.com",
+  "environment": "URL REMOTA — verificar proveedor y BD en la entrega",
+  "date": "2026-11-05T00:13:22.505544+00:00",
+  "passed": true,
+  "failure": null,
+  "tests": [
+    {
+      "name": "Swagger disponible",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/swagger/index.html",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": "<!-- HTML for static distribution bundle build -->\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Swagger UI</title>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"./swagger-ui.css\">\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"./index.css\">\r\n    <link rel=\"icon\" type=\"image/png\" href=\"./favicon-32x32.png\" sizes=\"32x32\" />\r\n    <link rel=\"icon\" type=\"image/png\" href=\"./favicon-16x16.png\" sizes=\"16x16\" />\r\n       \r\n</head>\r\n\r\n<body>\r\n    <div id=\"swagger-ui\"></div>\r\n\r\n    <script src=\"./swagger-ui-bundle.js\" charset=\"utf-8\"></script>\r\n    <script src=\"./swagger-ui-standalone-preset.js\" charset=\"utf-8\"></script>\r\n    <script src=\"index.js\" charset=\"utf-8\"></script>\r\n</body>\r\n</html>\r\n",
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:12:57 GMT",
+        "Content-Type": "text/html;charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cache-Control": "max-age=0, private",
+        "Etag": "W/\"XpksuI7SK4ZUIzv9+JEi7bNIY14=\"",
+        "Rndr-Id": "2e8fc4b4-197a-41e1",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "X-Swagger-Ui-Version": "5.33.3",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6597b9a19a4-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "OpenAPI público",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/openapi/v1.json",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "openapi": "3.1.1",
+        "info": {
+          "title": "Veterinaria.Api | v1",
+          "version": "1.0.0"
+        },
+        "servers": [
+          {
+            "url": "https://veterinaria-s12-cris.onrender.com:443/"
+          }
+        ],
+        "paths": {
+          "/api/Mascotas": {
+            "get": {
+              "tags": [
+                "Mascotas"
+              ],
+              "parameters": [
+                {
+                  "name": "propietarioId",
+                  "in": "query",
+                  "schema": {
+                    "maximum": 2147483647,
+                    "minimum": 1,
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  }
+                },
+                {
+                  "name": "buscar",
+                  "in": "query",
+                  "schema": {
+                    "maxLength": 80,
+                    "minLength": 0,
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "especie",
+                  "in": "query",
+                  "schema": {
+                    "maxLength": 40,
+                    "minLength": 0,
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Mascota"
+                        }
+                      }
+                    },
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Mascota"
+                        }
+                      }
+                    },
+                    "text/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Mascota"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "post": {
+              "tags": [
+                "Mascotas"
+              ],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Mascota"
+                    }
+                  },
+                  "text/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Mascota"
+                    }
+                  },
+                  "application/*+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Mascota"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Mascota"
+                      }
+                    },
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Mascota"
+                      }
+                    },
+                    "text/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Mascota"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/api/Mascotas/{id}": {
+            "get": {
+              "tags": [
+                "Mascotas"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Mascota"
+                      }
+                    },
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Mascota"
+                      }
+                    },
+                    "text/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Mascota"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "put": {
+              "tags": [
+                "Mascotas"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              ],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Mascota"
+                    }
+                  },
+                  "text/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Mascota"
+                    }
+                  },
+                  "application/*+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Mascota"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            },
+            "delete": {
+              "tags": [
+                "Mascotas"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/api/Propietarios": {
+            "get": {
+              "tags": [
+                "Propietarios"
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Propietario"
+                        }
+                      }
+                    },
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Propietario"
+                        }
+                      }
+                    },
+                    "text/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Propietario"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "post": {
+              "tags": [
+                "Propietarios"
+              ],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Propietario"
+                    }
+                  },
+                  "text/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Propietario"
+                    }
+                  },
+                  "application/*+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Propietario"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Propietario"
+                      }
+                    },
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Propietario"
+                      }
+                    },
+                    "text/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Propietario"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/api/Propietarios/{id}": {
+            "get": {
+              "tags": [
+                "Propietarios"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Propietario"
+                      }
+                    },
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Propietario"
+                      }
+                    },
+                    "text/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Propietario"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "put": {
+              "tags": [
+                "Propietarios"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              ],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Propietario"
+                    }
+                  },
+                  "text/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Propietario"
+                    }
+                  },
+                  "application/*+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Propietario"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            },
+            "delete": {
+              "tags": [
+                "Propietarios"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/api/Propietarios/{id}/mascotas": {
+            "get": {
+              "tags": [
+                "Propietarios"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Mascota"
+                        }
+                      }
+                    },
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Mascota"
+                        }
+                      }
+                    },
+                    "text/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Mascota"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "components": {
+          "schemas": {
+            "Mascota": {
+              "required": [
+                "nombre",
+                "especie"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32"
+                },
+                "nombre": {
+                  "maxLength": 80,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "especie": {
+                  "maxLength": 40,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "edad": {
+                  "maximum": 50,
+                  "minimum": 0,
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32"
+                },
+                "peso": {
+                  "maximum": 1000,
+                  "minimum": 0.01,
+                  "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+                  "type": [
+                    "number",
+                    "string"
+                  ],
+                  "format": "double"
+                },
+                "propietarioId": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32"
+                },
+                "propietario": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Propietario"
+                    }
+                  ]
+                }
+              }
+            },
+            "Propietario": {
+              "required": [
+                "nombre",
+                "documento",
+                "telefono"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32"
+                },
+                "nombre": {
+                  "maxLength": 100,
+                  "minLength": 0,
+                  "type": "string"
+                },
+                "documento": {
+                  "maxLength": 8,
+                  "minLength": 8,
+                  "pattern": "^[0-9]{8}$",
+                  "type": "string"
+                },
+                "telefono": {
+                  "maxLength": 15,
+                  "minLength": 7,
+                  "pattern": "^[0-9+ -]{7,15}$",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          {
+            "name": "Mascotas"
+          },
+          {
+            "name": "Propietarios"
+          }
+        ]
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:12:58 GMT",
+        "Content-Type": "application/json;charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "8fd84c4d-0788-4d16",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a65f7fe6e7a0-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Listar propietarios",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": [
+        {
+          "id": 1,
+          "nombre": "Ana Torres",
+          "documento": "12345678",
+          "telefono": "987654321"
+        },
+        {
+          "id": 3,
+          "nombre": "Carla Flores",
+          "documento": "45678912",
+          "telefono": "956123456"
+        },
+        {
+          "id": 2,
+          "nombre": "Luis Ramos",
+          "documento": "87654321",
+          "telefono": "912345678"
+        }
+      ],
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:12:58 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "87760cea-2fd7-480d",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a662cf2fb536-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Listar mascotas",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": [
+        {
+          "id": 1,
+          "nombre": "Luna",
+          "especie": "Perro",
+          "edad": 3,
+          "peso": 12.5,
+          "propietarioId": 1,
+          "propietario": {
+            "id": 1,
+            "nombre": "Ana Torres",
+            "documento": "12345678",
+            "telefono": "987654321"
+          }
+        },
+        {
+          "id": 2,
+          "nombre": "Milo",
+          "especie": "Gato",
+          "edad": 2,
+          "peso": 4.2,
+          "propietarioId": 1,
+          "propietario": {
+            "id": 1,
+            "nombre": "Ana Torres",
+            "documento": "12345678",
+            "telefono": "987654321"
+          }
+        },
+        {
+          "id": 3,
+          "nombre": "Rocky",
+          "especie": "Perro",
+          "edad": 5,
+          "peso": 22.8,
+          "propietarioId": 2,
+          "propietario": {
+            "id": 2,
+            "nombre": "Luis Ramos",
+            "documento": "87654321",
+            "telefono": "912345678"
+          }
+        }
+      ],
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:12:59 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "e2ac49b8-8cda-4d43",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a6655a6bb273-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Crear propietario",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 201,
+      "status": 201,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777"
+      },
+      "requestHeaders": null,
+      "response": {
+        "id": 6,
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:00 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Location": "https://veterinaria-s12-cris.onrender.com:443/api/Propietarios/6",
+        "Rndr-Id": "518c387b-34f5-468e",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a6690d74e425-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Crear segundo propietario",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 201,
+      "status": 201,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "84679971",
+        "telefono": "999888777"
+      },
+      "requestHeaders": null,
+      "response": {
+        "id": 7,
+        "nombre": "Prueba temporal S12",
+        "documento": "84679971",
+        "telefono": "999888777"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:00 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Location": "https://veterinaria-s12-cris.onrender.com:443/api/Propietarios/7",
+        "Rndr-Id": "372a3189-6d9e-47ea",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a66c2a5eb501-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Consultar propietario creado",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "id": 6,
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:01 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "6dde4ec6-6f56-4817",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a66f982db514-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Documento duplicado POST",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 409,
+      "status": 409,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777"
+      },
+      "requestHeaders": null,
+      "response": {
+        "title": "Documento duplicado",
+        "status": 409,
+        "detail": "Ya existe un propietario con ese documento."
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:01 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "1cd0eea4-a8e7-4233",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a672dac4b533-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Documento duplicado PUT",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/7",
+      "expected": 409,
+      "status": 409,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777",
+        "id": 7
+      },
+      "requestHeaders": null,
+      "response": {
+        "title": "Documento duplicado",
+        "status": 409,
+        "detail": "Ya existe un propietario con ese documento."
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:02 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "3f0e4d45-c26b-41c8",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a675fe9ce9b6-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Required automático",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "documento": "36667879",
+        "telefono": "999888777"
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "Nombre": [
+            "The Nombre field is required."
+          ]
+        },
+        "traceId": "00-617cea710841104f243225d8cb7bafb9-db380334357af96c-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:02 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "e1366c56-c78a-4f64",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a679ba8152c8-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "StringLength automático",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "documento": "36667879",
+        "telefono": "999888777"
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "Nombre": [
+            "The field Nombre must be a string with a maximum length of 100."
+          ]
+        },
+        "traceId": "00-b13665cce758162272fc51e6ed466d94-af8ce1e6978d6dee-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:02 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "30a858df-35d3-427c",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a67c1a1ae9a2-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Formato de documento",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "ABCDEFGH",
+        "telefono": "999888777"
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "Documento": [
+            "The field Documento must match the regular expression '^[0-9]{8}$'."
+          ]
+        },
+        "traceId": "00-113fce798128e835cf335a3b7b20e0b0-9a86953bece024f2-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:03 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "e17b9eff-7645-4983",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a67e79f8b507-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Id autogenerado propietario",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777",
+        "id": 999
+      },
+      "requestHeaders": null,
+      "response": {
+        "title": "El Id se genera automáticamente.",
+        "status": 400
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:03 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "13b29302-0f55-4686",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a680ccfa7fcc-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Id propietario no coincide",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777",
+        "id": 7
+      },
+      "requestHeaders": null,
+      "response": {
+        "title": "El Id de la ruta debe coincidir con el cuerpo.",
+        "status": 400
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:04 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "3eae7042-dba8-4f2b",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6841d94e7a1-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Actualizar propietario",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 204,
+      "status": 204,
+      "passed": true,
+      "request": {
+        "nombre": "Propietario actualizado S12",
+        "documento": "36667879",
+        "telefono": "999888777",
+        "id": 6
+      },
+      "requestHeaders": null,
+      "response": null,
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:04 GMT",
+        "Connection": "close",
+        "Rndr-Id": "ebf5a7cc-2238-4254",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a686d99bb86f-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Verificar actualización propietario",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "id": 6,
+        "nombre": "Propietario actualizado S12",
+        "documento": "36667879",
+        "telefono": "999888777"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:05 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "4dfb8ee7-f1a4-4617",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a68aba0eb4e3-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Ruta anidada vacía",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6/mascotas",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": [],
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:06 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "ebf8e46f-184e-4d2f",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a68e68d4f3b5-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Crear mascota solo con FK",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 201,
+      "status": 201,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 6
+      },
+      "requestHeaders": null,
+      "response": {
+        "id": 4,
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 6,
+        "propietario": null
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:06 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Location": "https://veterinaria-s12-cris.onrender.com:443/api/Mascotas/4",
+        "Rndr-Id": "b60b14a6-5b81-4890",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a69238b6e9a8-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Consultar mascota con propietario y sin ciclo",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "id": 4,
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 6,
+        "propietario": {
+          "id": 6,
+          "nombre": "Propietario actualizado S12",
+          "documento": "36667879",
+          "telefono": "999888777"
+        }
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:07 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "79184b1f-e05c-43f6",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a696a93fb528-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Filtros combinados",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas?propietarioId=6&buscar=temporal&especie=Gato",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": [
+        {
+          "id": 4,
+          "nombre": "Mascota temporal S12",
+          "especie": "Gato",
+          "edad": 2,
+          "peso": 4.25,
+          "propietarioId": 6,
+          "propietario": {
+            "id": 6,
+            "nombre": "Propietario actualizado S12",
+            "documento": "36667879",
+            "telefono": "999888777"
+          }
+        }
+      ],
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:08 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "b614bdca-a0c6-496d",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a69cf848d9e7-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Filtros sin coincidencias",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas?propietarioId=6&especie=Perro",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": [],
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:08 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "0a057eb1-6515-4e53",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6a0af9a2245-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Filtro inválido",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas?propietarioId=0",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "propietarioId": [
+            "The field propietarioId must be between 1 and 2147483647."
+          ]
+        },
+        "traceId": "00-9d562497cd625f278ed074e2a09af9be-20d7ef4d426e1bed-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:09 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "47b36090-e653-47e9",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6a378785291-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Ruta anidada con mascota",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6/mascotas",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": [
+        {
+          "id": 4,
+          "nombre": "Mascota temporal S12",
+          "especie": "Gato",
+          "edad": 2,
+          "peso": 4.25,
+          "propietarioId": 6,
+          "propietario": null
+        }
+      ],
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:09 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Rndr-Id": "58540544-7867-43f3",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Ray": "a557a6a5da4f0cdd-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Eliminar propietario con dependientes",
+      "method": "DELETE",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 409,
+      "status": 409,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "title": "Propietario con mascotas",
+        "status": 409,
+        "detail": "Elimina o reasigna sus mascotas antes de eliminar al propietario."
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:10 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "da2b2f99-1e63-4c70",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6a91a0d584a-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "FK inexistente POST",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 2147483647
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "PropietarioId": [
+            "El propietario indicado no existe."
+          ]
+        },
+        "traceId": "00-2061177cfa0ef6630e46b28aac38fba4-6fc265eb16249d3c-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:10 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "48801e6a-f351-49f8",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6ac2ce02f8c-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "FK inexistente PUT",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 2147483647,
+        "id": 4
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "PropietarioId": [
+            "El propietario indicado no existe."
+          ]
+        },
+        "traceId": "00-d1eb5451fcfd018fa07694368afec804-35741c7df7076491-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:11 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "cb30be4a-0371-413b",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6af38d406d5-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Range peso automático",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": -1,
+        "propietarioId": 6
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "Peso": [
+            "The field Peso must be between 0.01 and 1000."
+          ]
+        },
+        "traceId": "00-9f30da08181c75f9b7e9468ca6b38bf5-91484ffa8c66c078-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:11 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "83e30dcd-e1aa-44bc",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6b30da7c712-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Range edad automático",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 51,
+        "peso": 4.25,
+        "propietarioId": 6
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "Edad": [
+            "The field Edad must be between 0 and 50."
+          ]
+        },
+        "traceId": "00-8a8d70926517490df0b8c9b5cc66deb5-a6d6e22c4817c312-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:13 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "99ef6844-d0a7-4a6c",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6bc68c3ddba-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Required mascota automático",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": " ",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 6
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+        "title": "One or more validation errors occurred.",
+        "status": 400,
+        "errors": {
+          "Nombre": [
+            "The Nombre field is required."
+          ]
+        },
+        "traceId": "00-60bad03e3581dcbcf21c7f5779e62bba-6e36ab37fb67d62b-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:13 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "8b143f2c-6b1f-485e",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6bf9c8a481f-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Id autogenerado mascota",
+      "method": "POST",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 6,
+        "id": 999
+      },
+      "requestHeaders": null,
+      "response": {
+        "title": "El Id se genera automáticamente.",
+        "status": 400
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:14 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "55e84c98-5b57-4805",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6c1f979eedb-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Id mascota no coincide",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 400,
+      "status": 400,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 6,
+        "id": 5
+      },
+      "requestHeaders": null,
+      "response": {
+        "title": "El Id de la ruta debe coincidir con el cuerpo.",
+        "status": 400
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:14 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "05030a2c-1ac0-4c2f",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6c49cd2af2d-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Actualizar y reasignar mascota",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 204,
+      "status": 204,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota actualizada S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 7,
+        "id": 4
+      },
+      "requestHeaders": null,
+      "response": null,
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:15 GMT",
+        "Connection": "close",
+        "Rndr-Id": "9717a523-3bb4-4c02",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6c72b56e9b2-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Verificar actualización mascota",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 200,
+      "status": 200,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "id": 4,
+        "nombre": "Mascota actualizada S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 7,
+        "propietario": {
+          "id": 7,
+          "nombre": "Prueba temporal S12",
+          "documento": "84679971",
+          "telefono": "999888777"
+        }
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:15 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "48b23de9-4ec1-4e73",
+        "Server": "cloudflare",
+        "Vary": "Accept-Encoding",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6cc483b06d5-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Eliminar mascota",
+      "method": "DELETE",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 204,
+      "status": 204,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": null,
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:16 GMT",
+        "Connection": "close",
+        "Rndr-Id": "f550d63e-efae-4f36",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6d07858fb26-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Mascota inexistente GET",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 404,
+      "status": 404,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+        "title": "Not Found",
+        "status": 404,
+        "traceId": "00-e36e4eb9d08a3402bfbaf50a3cfcaa1d-d9f210e985fb0dcb-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:17 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "0b03e106-d701-4586",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6d4498b7fcc-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Mascota inexistente PUT",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 404,
+      "status": 404,
+      "passed": true,
+      "request": {
+        "nombre": "Mascota temporal S12",
+        "especie": "Gato",
+        "edad": 2,
+        "peso": 4.25,
+        "propietarioId": 6,
+        "id": 4
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+        "title": "Not Found",
+        "status": 404,
+        "traceId": "00-dbf8cdbb37b5864acf0a0faf00ce3dc2-27705229e5f0a12e-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:17 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "80071d9e-1f34-40ea",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6d6fd77e75c-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Mascota inexistente DELETE",
+      "method": "DELETE",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas/4",
+      "expected": 404,
+      "status": 404,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+        "title": "Not Found",
+        "status": 404,
+        "traceId": "00-f986edef01288aca9a52613da131e1e6-5d4270a7b57f95c2-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:17 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "b0750328-dc92-4466",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6d9bcfde7a5-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Eliminar propietario",
+      "method": "DELETE",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 204,
+      "status": 204,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": null,
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:18 GMT",
+        "Connection": "close",
+        "Rndr-Id": "1b2b875d-ed3e-45bc",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6dc3b2c13b4-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Propietario inexistente GET",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 404,
+      "status": 404,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+        "title": "Not Found",
+        "status": 404,
+        "traceId": "00-e8d0dfbbbf7bb32588016c0afddf1399-bbf38e858b419b98-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:18 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "0a549d58-4958-49d8",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6dfaeef5ced-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Propietario inexistente PUT",
+      "method": "PUT",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 404,
+      "status": 404,
+      "passed": true,
+      "request": {
+        "nombre": "Prueba temporal S12",
+        "documento": "36667879",
+        "telefono": "999888777",
+        "id": 6
+      },
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+        "title": "Not Found",
+        "status": 404,
+        "traceId": "00-0b2f73df6863e23275f3f6cc74b94ff8-b0ff7cfa38e7e754-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:19 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "dbdd95a4-02a8-46ba",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6e25d09481f-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Propietario inexistente DELETE",
+      "method": "DELETE",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6",
+      "expected": 404,
+      "status": 404,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+        "title": "Not Found",
+        "status": 404,
+        "traceId": "00-100a62097b6c72e221fb584609c572a2-90384f1772fdc560-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:19 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "32e98dd5-68e8-4d48",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6e5db02e99c-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Padre inexistente en ruta anidada",
+      "method": "GET",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/6/mascotas",
+      "expected": 404,
+      "status": 404,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": {
+        "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+        "title": "Not Found",
+        "status": 404,
+        "traceId": "00-fe2e7601ab0d7c9a7ce9950b49ca7df2-5972368f623eb0c7-00"
+      },
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:20 GMT",
+        "Content-Type": "application/problem+json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "close",
+        "Rndr-Id": "f697181a-1590-47c6",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6e99e073407-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "CORS origen permitido",
+      "method": "OPTIONS",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 204,
+      "status": 204,
+      "passed": true,
+      "request": null,
+      "requestHeaders": {
+        "Origin": "http://localhost:3000",
+        "Access-Control-Request-Method": "POST"
+      },
+      "response": null,
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:20 GMT",
+        "Connection": "close",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Rndr-Id": "d562b049-e801-4eac",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6ec68e45291-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "CORS origen ajeno",
+      "method": "OPTIONS",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/mascotas",
+      "expected": 204,
+      "status": 204,
+      "passed": true,
+      "request": null,
+      "requestHeaders": {
+        "Origin": "https://origen-ajeno.example",
+        "Access-Control-Request-Method": "POST"
+      },
+      "response": null,
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:21 GMT",
+        "Connection": "close",
+        "Rndr-Id": "2d599cd6-a876-4aa1",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6eecab6e75c-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    },
+    {
+      "name": "Limpieza propietario temporal",
+      "method": "DELETE",
+      "url": "https://veterinaria-s12-cris.onrender.com/api/propietarios/7",
+      "expected": 204,
+      "status": 204,
+      "passed": true,
+      "request": null,
+      "requestHeaders": null,
+      "response": null,
+      "headers": {
+        "Date": "Thu, 05 Nov 2026 00:13:21 GMT",
+        "Connection": "close",
+        "Rndr-Id": "faf545ef-5da2-4631",
+        "Server": "cloudflare",
+        "X-Render-Origin-Server": "Kestrel",
+        "Cf-Cache-Status": "DYNAMIC",
+        "Cf-Ray": "a557a6f148e07d74-SCL",
+        "Alt-Svc": "h3=\":443\"; ma=86400"
+      },
+      "detail": ""
+    }
+  ]
+}

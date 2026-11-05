@@ -6,7 +6,9 @@ API REST para registrar propietarios y mascotas de una veterinaria. Proyecto ind
 
 Implementación local terminada y validada: 11 operaciones, Swagger público, SQL con datos, Scaffold real desde PostgreSQL, validaciones, CORS y pruebas HTTP. Las instrucciones de despliegue están en [docs/DESPLIEGUE.md](docs/DESPLIEGUE.md).
 
-**Pendiente para la entrega final:** crear las cuentas gratuitas, subir este proyecto a un repositorio propio, publicar API y base de datos, ejecutar las pruebas sobre esa URL y capturar sus resultados. Los resultados locales no reemplazan las evidencias de la nube.
+API publicada en [Swagger de Veterinaria](https://veterinaria-s12-cris.onrender.com/swagger/index.html), alojada en Render Free y conectada a PostgreSQL 17 en Neon Free. Código en [Cris-div/Lab-S012-NET](https://github.com/Cris-div/Lab-S012-NET).
+
+Se ejecutaron **45 pruebas correctas contra la URL pública**, con los códigos 200, 201, 204, 400, 404 y 409. [Capturas y resultados completos](evidencias/README.md).
 
 ## Ejecutar en Windows
 
@@ -127,7 +129,8 @@ Si cambias el origen permitido, añade `--origin https://tu-frontend.example`. E
 | ConnectionStrings__Veterinaria | Cadena Npgsql; obligatoria |
 | Cors__AllowedOrigin | Origen exacto permitido; por defecto http://localhost:3000 |
 | ASPNETCORE_ENVIRONMENT | Production en Render |
+| PublicOrigin | https://veterinaria-s12-cris.onrender.com en Render; omitir en local |
 
-No se incluyen credenciales ni cadenas reales en archivos versionables. `.local`, `.env*`, `artifacts`, `bin` y `obj` están excluidos. Swagger y OpenAPI permanecen habilitados en Production como exige el laboratorio. Render ofrece HTTPS en su proxy; dentro del contenedor la API escucha HTTP en 8080. No hay autenticación, siguiendo el alcance del laboratorio; usar datos ficticios.
+No se incluyen credenciales ni cadenas reales en archivos versionables. `.local`, `.env*`, `artifacts`, `bin` y `obj` están excluidos. Swagger y OpenAPI permanecen habilitados en Production como exige el laboratorio. Render ofrece HTTPS en su proxy; dentro del contenedor la API escucha HTTP en 8080. `PublicOrigin` fija el esquema y host públicos para generar Location y el servidor de OpenAPI con HTTPS sin confiar en cabeceras arbitrarias de proxy. No hay autenticación, siguiendo el alcance del laboratorio; usar datos ficticios.
 
-El informe y los espacios para completar los enlaces de entrega se encuentran en [docs/INFORME.md](docs/INFORME.md).
+El informe con los enlaces y evidencias de entrega se encuentra en [docs/INFORME.md](docs/INFORME.md).

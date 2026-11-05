@@ -1,6 +1,6 @@
 # Publicación en Render y Neon
 
-Esta guía publica la API y la base de datos en la nube, ambas con planes gratuitos. Requiere cuentas personales de GitHub, Render y Neon. No es necesario modificar el repositorio del profesor.
+La API ya está publicada en [Swagger](https://veterinaria-s12-cris.onrender.com/swagger/index.html), con código en [Cris-div/Lab-S012-NET](https://github.com/Cris-div/Lab-S012-NET), Render Free y una base PostgreSQL 17 del proyecto `veterinaria-s12` en Neon Free. Esta guía permite repetir la publicación en servicios propios. No es necesario modificar el repositorio del profesor.
 
 ## 1 Crear un repositorio propio
 
@@ -44,8 +44,9 @@ Este bloque es una plantilla. Introducir el valor real solo en el panel de secre
 | ConnectionStrings__Veterinaria | Cadena Npgsql real de Neon, solo en Environment de Render |
 | Cors__AllowedOrigin | http://localhost:3000 o el origen HTTPS exacto de un frontend propio |
 | ASPNETCORE_ENVIRONMENT | Production |
+| PublicOrigin | URL HTTPS del servicio, sin ruta, por ejemplo https://veterinaria-s12-cris.onrender.com |
 
-4. Confirmar que el servicio está en plan Free e iniciar el despliegue. El contenedor escucha en 8080, puerto que Render detecta. El health check consulta `/api/propietarios`, por lo que también verifica acceso a la BD.
+4. Confirmar que el servicio está en plan Free e iniciar el despliegue. El contenedor escucha en 8080, puerto que Render detecta. El health check consulta `/api/propietarios`, por lo que también verifica acceso a la BD. Si todavía no conoces la URL del nuevo servicio, agrega `PublicOrigin` en Environment cuando Render la asigne y vuelve a desplegar. Esta variable permite generar enlaces Location y el servidor de Swagger con HTTPS.
 5. Abrir `https://TU-SERVICIO.onrender.com/swagger`. Confirmar que `/openapi/v1.json`, `/api/propietarios` y `/api/mascotas` devuelven datos reales de Neon.
 
 La API no ejecuta automáticamente SQL ni crea tablas: el paso del SQL Editor es obligatorio. En Render, una publicación sin la variable de conexión falla con un mensaje de configuración; una base sin tablas falla en el health check.

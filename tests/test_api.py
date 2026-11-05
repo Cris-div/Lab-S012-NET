@@ -77,6 +77,15 @@ def pet(owner_id, **extra):
                 propietarioId=owner_id, **extra)
 
 
+def location_matches(data, headers, entity):
+    location = urllib.parse.urlparse(headers.get("Location", ""))
+    # https://host y https://host:443 identifican el mismo origen.
+    default_port = lambda parsed: parsed.port or (443 if parsed.scheme == "https" else 80)
+    return (location.scheme == uri.scheme and location.hostname == uri.hostname
+            and default_port(location) == default_port(uri)
+            and location.path == uri.path.rstrip("/") + f'/api/{entity}/{data["id"]}')
+
+
 failure = None
 try:
     call("Swagger disponible", "GET", "/swagger/index.html", 200,
@@ -92,8 +101,7 @@ try:
         docs.add(str(secrets.randbelow(90000000) + 10000000))
     doc1, doc2 = docs
     p = call("Crear propietario", "POST", "/api/propietarios", 201, owner(doc1),
-             check=lambda d, h: h.get("Location", "").startswith(base + "/api/")
-             and h["Location"].endswith(f'/api/Propietarios/{d["id"]}'))
+             check=lambda d, h: location_matches(d, h, "Propietarios"))
     pid = p["id"]
     p2 = call("Crear segundo propietario", "POST", "/api/propietarios", 201, owner(doc2))
     pid2 = p2["id"]
@@ -113,8 +121,7 @@ try:
          check=lambda d, _: d["nombre"] == "Propietario actualizado S12")
     call("Ruta anidada vacía", "GET", f"/api/propietarios/{pid}/mascotas", 200, check=lambda d, _: d == [])
     m = call("Crear mascota solo con FK", "POST", "/api/mascotas", 201, pet(pid),
-             check=lambda d, h: h.get("Location", "").startswith(base + "/api/")
-             and h["Location"].endswith(f'/api/Mascotas/{d["id"]}'))
+             check=lambda d, h: location_matches(d, h, "Mascotas"))
     mid = m["id"]
     call("Consultar mascota con propietario y sin ciclo", "GET", f"/api/mascotas/{mid}", 200,
          check=lambda d, _: d["propietario"]["id"] == pid and "mascotas" not in d["propietario"])

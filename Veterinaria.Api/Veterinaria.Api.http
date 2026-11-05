@@ -1,6 +1,6 @@
 # Cliente REST de VS Code (REST Client) o adaptar en Visual Studio.
 # Para la entrega, reemplazar por la URL HTTPS publicada, sin /swagger.
-@baseUrl = http://localhost:5163
+@baseUrl = https://veterinaria-s12-cris.onrender.com
 @documento = 73452619
 @propietarioId = {{crearPropietario.response.body.$.id}}
 @mascotaId = {{crearMascota.response.body.$.id}}

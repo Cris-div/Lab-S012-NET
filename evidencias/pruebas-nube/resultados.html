@@ -1,0 +1,995 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Pruebas Veterinaria API</title><style>body{font:16px system-ui;max-width:1000px;margin:32px auto;padding:0 20px;color:#17212b}article{border:1px solid #ccd4dc;padding:20px;margin:24px 0;break-inside:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere}h1{font-size:28px}h2{font-size:21px}h3{font-size:17px}</style><h1>Pruebas Veterinaria API</h1><p>URL REMOTA — verificar proveedor y BD en la entrega</p><p>https://veterinaria-s12-cris.onrender.com | 2026-11-05T00:13:22.505544+00:00</p><p>45/45 pruebas correctas.</p><article><h2>1. Swagger disponible</h2><p>GET https://veterinaria-s12-cris.onrender.com/swagger/index.html</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>&quot;&lt;!-- HTML for static distribution bundle build --&gt;\r\n&lt;!DOCTYPE html&gt;\r\n&lt;html lang=\&quot;en\&quot;&gt;\r\n&lt;head&gt;\r\n    &lt;meta charset=\&quot;UTF-8\&quot;&gt;\r\n    &lt;title&gt;Swagger UI&lt;/title&gt;\r\n    &lt;link rel=\&quot;stylesheet\&quot; type=\&quot;text/css\&quot; href=\&quot;./swagger-ui.css\&quot;&gt;\r\n    &lt;link rel=\&quot;stylesheet\&quot; type=\&quot;text/css\&quot; href=\&quot;./index.css\&quot;&gt;\r\n    &lt;link rel=\&quot;icon\&quot; type=\&quot;image/png\&quot; href=\&quot;./favicon-32x32.png\&quot; sizes=\&quot;32x32\&quot; /&gt;\r\n    &lt;link rel=\&quot;icon\&quot; type=\&quot;image/png\&quot; href=\&quot;./favicon-16x16.png\&quot; sizes=\&quot;16x16\&quot; /&gt;\r\n       \r\n&lt;/head&gt;\r\n\r\n&lt;body&gt;\r\n    &lt;div id=\&quot;swagger-ui\&quot;&gt;&lt;/div&gt;\r\n\r\n    &lt;script src=\&quot;./swagger-ui-bundle.js\&quot; charset=\&quot;utf-8\&quot;&gt;&lt;/script&gt;\r\n    &lt;script src=\&quot;./swagger-ui-standalone-preset.js\&quot; charset=\&quot;utf-8\&quot;&gt;&lt;/script&gt;\r\n    &lt;script src=\&quot;index.js\&quot; charset=\&quot;utf-8\&quot;&gt;&lt;/script&gt;\r\n&lt;/body&gt;\r\n&lt;/html&gt;\r\n&quot;</pre></article><article><h2>2. OpenAPI público</h2><p>GET https://veterinaria-s12-cris.onrender.com/openapi/v1.json</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;openapi&quot;: &quot;3.1.1&quot;,
+  &quot;info&quot;: {
+    &quot;title&quot;: &quot;Veterinaria.Api | v1&quot;,
+    &quot;version&quot;: &quot;1.0.0&quot;
+  },
+  &quot;servers&quot;: [
+    {
+      &quot;url&quot;: &quot;https://veterinaria-s12-cris.onrender.com:443/&quot;
+    }
+  ],
+  &quot;paths&quot;: {
+    &quot;/api/Mascotas&quot;: {
+      &quot;get&quot;: {
+        &quot;tags&quot;: [
+          &quot;Mascotas&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;propietarioId&quot;,
+            &quot;in&quot;: &quot;query&quot;,
+            &quot;schema&quot;: {
+              &quot;maximum&quot;: 2147483647,
+              &quot;minimum&quot;: 1,
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: [
+                &quot;integer&quot;,
+                &quot;string&quot;
+              ],
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          },
+          {
+            &quot;name&quot;: &quot;buscar&quot;,
+            &quot;in&quot;: &quot;query&quot;,
+            &quot;schema&quot;: {
+              &quot;maxLength&quot;: 80,
+              &quot;minLength&quot;: 0,
+              &quot;type&quot;: &quot;string&quot;
+            }
+          },
+          {
+            &quot;name&quot;: &quot;especie&quot;,
+            &quot;in&quot;: &quot;query&quot;,
+            &quot;schema&quot;: {
+              &quot;maxLength&quot;: 40,
+              &quot;minLength&quot;: 0,
+              &quot;type&quot;: &quot;string&quot;
+            }
+          }
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;,
+            &quot;content&quot;: {
+              &quot;text/plain&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                  }
+                }
+              },
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                  }
+                }
+              },
+              &quot;text/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      &quot;post&quot;: {
+        &quot;tags&quot;: [
+          &quot;Mascotas&quot;
+        ],
+        &quot;requestBody&quot;: {
+          &quot;content&quot;: {
+            &quot;application/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+              }
+            },
+            &quot;text/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+              }
+            },
+            &quot;application/*+json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+              }
+            }
+          },
+          &quot;required&quot;: true
+        },
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;,
+            &quot;content&quot;: {
+              &quot;text/plain&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                }
+              },
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                }
+              },
+              &quot;text/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    &quot;/api/Mascotas/{id}&quot;: {
+      &quot;get&quot;: {
+        &quot;tags&quot;: [
+          &quot;Mascotas&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;id&quot;,
+            &quot;in&quot;: &quot;path&quot;,
+            &quot;required&quot;: true,
+            &quot;schema&quot;: {
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: &quot;integer&quot;,
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          }
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;,
+            &quot;content&quot;: {
+              &quot;text/plain&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                }
+              },
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                }
+              },
+              &quot;text/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                }
+              }
+            }
+          }
+        }
+      },
+      &quot;put&quot;: {
+        &quot;tags&quot;: [
+          &quot;Mascotas&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;id&quot;,
+            &quot;in&quot;: &quot;path&quot;,
+            &quot;required&quot;: true,
+            &quot;schema&quot;: {
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: &quot;integer&quot;,
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          }
+        ],
+        &quot;requestBody&quot;: {
+          &quot;content&quot;: {
+            &quot;application/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+              }
+            },
+            &quot;text/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+              }
+            },
+            &quot;application/*+json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+              }
+            }
+          },
+          &quot;required&quot;: true
+        },
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;
+          }
+        }
+      },
+      &quot;delete&quot;: {
+        &quot;tags&quot;: [
+          &quot;Mascotas&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;id&quot;,
+            &quot;in&quot;: &quot;path&quot;,
+            &quot;required&quot;: true,
+            &quot;schema&quot;: {
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: &quot;integer&quot;,
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          }
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;
+          }
+        }
+      }
+    },
+    &quot;/api/Propietarios&quot;: {
+      &quot;get&quot;: {
+        &quot;tags&quot;: [
+          &quot;Propietarios&quot;
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;,
+            &quot;content&quot;: {
+              &quot;text/plain&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                  }
+                }
+              },
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                  }
+                }
+              },
+              &quot;text/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      &quot;post&quot;: {
+        &quot;tags&quot;: [
+          &quot;Propietarios&quot;
+        ],
+        &quot;requestBody&quot;: {
+          &quot;content&quot;: {
+            &quot;application/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+              }
+            },
+            &quot;text/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+              }
+            },
+            &quot;application/*+json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+              }
+            }
+          },
+          &quot;required&quot;: true
+        },
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;,
+            &quot;content&quot;: {
+              &quot;text/plain&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                }
+              },
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                }
+              },
+              &quot;text/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    &quot;/api/Propietarios/{id}&quot;: {
+      &quot;get&quot;: {
+        &quot;tags&quot;: [
+          &quot;Propietarios&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;id&quot;,
+            &quot;in&quot;: &quot;path&quot;,
+            &quot;required&quot;: true,
+            &quot;schema&quot;: {
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: &quot;integer&quot;,
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          }
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;,
+            &quot;content&quot;: {
+              &quot;text/plain&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                }
+              },
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                }
+              },
+              &quot;text/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+                }
+              }
+            }
+          }
+        }
+      },
+      &quot;put&quot;: {
+        &quot;tags&quot;: [
+          &quot;Propietarios&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;id&quot;,
+            &quot;in&quot;: &quot;path&quot;,
+            &quot;required&quot;: true,
+            &quot;schema&quot;: {
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: &quot;integer&quot;,
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          }
+        ],
+        &quot;requestBody&quot;: {
+          &quot;content&quot;: {
+            &quot;application/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+              }
+            },
+            &quot;text/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+              }
+            },
+            &quot;application/*+json&quot;: {
+              &quot;schema&quot;: {
+                &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+              }
+            }
+          },
+          &quot;required&quot;: true
+        },
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;
+          }
+        }
+      },
+      &quot;delete&quot;: {
+        &quot;tags&quot;: [
+          &quot;Propietarios&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;id&quot;,
+            &quot;in&quot;: &quot;path&quot;,
+            &quot;required&quot;: true,
+            &quot;schema&quot;: {
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: &quot;integer&quot;,
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          }
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;
+          }
+        }
+      }
+    },
+    &quot;/api/Propietarios/{id}/mascotas&quot;: {
+      &quot;get&quot;: {
+        &quot;tags&quot;: [
+          &quot;Propietarios&quot;
+        ],
+        &quot;parameters&quot;: [
+          {
+            &quot;name&quot;: &quot;id&quot;,
+            &quot;in&quot;: &quot;path&quot;,
+            &quot;required&quot;: true,
+            &quot;schema&quot;: {
+              &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+              &quot;type&quot;: &quot;integer&quot;,
+              &quot;format&quot;: &quot;int32&quot;
+            }
+          }
+        ],
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;OK&quot;,
+            &quot;content&quot;: {
+              &quot;text/plain&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                  }
+                }
+              },
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                  }
+                }
+              },
+              &quot;text/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;array&quot;,
+                  &quot;items&quot;: {
+                    &quot;$ref&quot;: &quot;#/components/schemas/Mascota&quot;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  &quot;components&quot;: {
+    &quot;schemas&quot;: {
+      &quot;Mascota&quot;: {
+        &quot;required&quot;: [
+          &quot;nombre&quot;,
+          &quot;especie&quot;
+        ],
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {
+            &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+            &quot;type&quot;: [
+              &quot;integer&quot;,
+              &quot;string&quot;
+            ],
+            &quot;format&quot;: &quot;int32&quot;
+          },
+          &quot;nombre&quot;: {
+            &quot;maxLength&quot;: 80,
+            &quot;minLength&quot;: 0,
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;especie&quot;: {
+            &quot;maxLength&quot;: 40,
+            &quot;minLength&quot;: 0,
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;edad&quot;: {
+            &quot;maximum&quot;: 50,
+            &quot;minimum&quot;: 0,
+            &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+            &quot;type&quot;: [
+              &quot;integer&quot;,
+              &quot;string&quot;
+            ],
+            &quot;format&quot;: &quot;int32&quot;
+          },
+          &quot;peso&quot;: {
+            &quot;maximum&quot;: 1000,
+            &quot;minimum&quot;: 0.01,
+            &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$&quot;,
+            &quot;type&quot;: [
+              &quot;number&quot;,
+              &quot;string&quot;
+            ],
+            &quot;format&quot;: &quot;double&quot;
+          },
+          &quot;propietarioId&quot;: {
+            &quot;maximum&quot;: 2147483647,
+            &quot;minimum&quot;: 1,
+            &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+            &quot;type&quot;: [
+              &quot;integer&quot;,
+              &quot;string&quot;
+            ],
+            &quot;format&quot;: &quot;int32&quot;
+          },
+          &quot;propietario&quot;: {
+            &quot;oneOf&quot;: [
+              {
+                &quot;type&quot;: &quot;null&quot;
+              },
+              {
+                &quot;$ref&quot;: &quot;#/components/schemas/Propietario&quot;
+              }
+            ]
+          }
+        }
+      },
+      &quot;Propietario&quot;: {
+        &quot;required&quot;: [
+          &quot;nombre&quot;,
+          &quot;documento&quot;,
+          &quot;telefono&quot;
+        ],
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {
+            &quot;pattern&quot;: &quot;^-?(?:0|[1-9]\\d*)$&quot;,
+            &quot;type&quot;: [
+              &quot;integer&quot;,
+              &quot;string&quot;
+            ],
+            &quot;format&quot;: &quot;int32&quot;
+          },
+          &quot;nombre&quot;: {
+            &quot;maxLength&quot;: 100,
+            &quot;minLength&quot;: 0,
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;documento&quot;: {
+            &quot;maxLength&quot;: 8,
+            &quot;minLength&quot;: 8,
+            &quot;pattern&quot;: &quot;^[0-9]{8}$&quot;,
+            &quot;type&quot;: &quot;string&quot;
+          },
+          &quot;telefono&quot;: {
+            &quot;maxLength&quot;: 15,
+            &quot;minLength&quot;: 7,
+            &quot;pattern&quot;: &quot;^[0-9+ -]{7,15}$&quot;,
+            &quot;type&quot;: &quot;string&quot;
+          }
+        }
+      }
+    }
+  },
+  &quot;tags&quot;: [
+    {
+      &quot;name&quot;: &quot;Mascotas&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Propietarios&quot;
+    }
+  ]
+}</pre></article><article><h2>3. Listar propietarios</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>[
+  {
+    &quot;id&quot;: 1,
+    &quot;nombre&quot;: &quot;Ana Torres&quot;,
+    &quot;documento&quot;: &quot;12345678&quot;,
+    &quot;telefono&quot;: &quot;987654321&quot;
+  },
+  {
+    &quot;id&quot;: 3,
+    &quot;nombre&quot;: &quot;Carla Flores&quot;,
+    &quot;documento&quot;: &quot;45678912&quot;,
+    &quot;telefono&quot;: &quot;956123456&quot;
+  },
+  {
+    &quot;id&quot;: 2,
+    &quot;nombre&quot;: &quot;Luis Ramos&quot;,
+    &quot;documento&quot;: &quot;87654321&quot;,
+    &quot;telefono&quot;: &quot;912345678&quot;
+  }
+]</pre></article><article><h2>4. Listar mascotas</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>[
+  {
+    &quot;id&quot;: 1,
+    &quot;nombre&quot;: &quot;Luna&quot;,
+    &quot;especie&quot;: &quot;Perro&quot;,
+    &quot;edad&quot;: 3,
+    &quot;peso&quot;: 12.5,
+    &quot;propietarioId&quot;: 1,
+    &quot;propietario&quot;: {
+      &quot;id&quot;: 1,
+      &quot;nombre&quot;: &quot;Ana Torres&quot;,
+      &quot;documento&quot;: &quot;12345678&quot;,
+      &quot;telefono&quot;: &quot;987654321&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 2,
+    &quot;nombre&quot;: &quot;Milo&quot;,
+    &quot;especie&quot;: &quot;Gato&quot;,
+    &quot;edad&quot;: 2,
+    &quot;peso&quot;: 4.2,
+    &quot;propietarioId&quot;: 1,
+    &quot;propietario&quot;: {
+      &quot;id&quot;: 1,
+      &quot;nombre&quot;: &quot;Ana Torres&quot;,
+      &quot;documento&quot;: &quot;12345678&quot;,
+      &quot;telefono&quot;: &quot;987654321&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 3,
+    &quot;nombre&quot;: &quot;Rocky&quot;,
+    &quot;especie&quot;: &quot;Perro&quot;,
+    &quot;edad&quot;: 5,
+    &quot;peso&quot;: 22.8,
+    &quot;propietarioId&quot;: 2,
+    &quot;propietario&quot;: {
+      &quot;id&quot;: 2,
+      &quot;nombre&quot;: &quot;Luis Ramos&quot;,
+      &quot;documento&quot;: &quot;87654321&quot;,
+      &quot;telefono&quot;: &quot;912345678&quot;
+    }
+  }
+]</pre></article><article><h2>5. Crear propietario</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 201 | Esperado 201 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;id&quot;: 6,
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre></article><article><h2>6. Crear segundo propietario</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 201 | Esperado 201 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;84679971&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;id&quot;: 7,
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;84679971&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre></article><article><h2>7. Consultar propietario creado</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;id&quot;: 6,
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre></article><article><h2>8. Documento duplicado POST</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 409 | Esperado 409 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;title&quot;: &quot;Documento duplicado&quot;,
+  &quot;status&quot;: 409,
+  &quot;detail&quot;: &quot;Ya existe un propietario con ese documento.&quot;
+}</pre></article><article><h2>9. Documento duplicado PUT</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/propietarios/7</p><p>HTTP 409 | Esperado 409 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;,
+  &quot;id&quot;: 7
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;title&quot;: &quot;Documento duplicado&quot;,
+  &quot;status&quot;: 409,
+  &quot;detail&quot;: &quot;Ya existe un propietario con ese documento.&quot;
+}</pre></article><article><h2>10. Required automático</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;Nombre&quot;: [
+      &quot;The Nombre field is required.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-617cea710841104f243225d8cb7bafb9-db380334357af96c-00&quot;
+}</pre></article><article><h2>11. StringLength automático</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;Nombre&quot;: [
+      &quot;The field Nombre must be a string with a maximum length of 100.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-b13665cce758162272fc51e6ed466d94-af8ce1e6978d6dee-00&quot;
+}</pre></article><article><h2>12. Formato de documento</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;ABCDEFGH&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;Documento&quot;: [
+      &quot;The field Documento must match the regular expression &#x27;^[0-9]{8}$&#x27;.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-113fce798128e835cf335a3b7b20e0b0-9a86953bece024f2-00&quot;
+}</pre></article><article><h2>13. Id autogenerado propietario</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/propietarios</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;,
+  &quot;id&quot;: 999
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;title&quot;: &quot;El Id se genera automáticamente.&quot;,
+  &quot;status&quot;: 400
+}</pre></article><article><h2>14. Id propietario no coincide</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;,
+  &quot;id&quot;: 7
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;title&quot;: &quot;El Id de la ruta debe coincidir con el cuerpo.&quot;,
+  &quot;status&quot;: 400
+}</pre></article><article><h2>15. Actualizar propietario</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 204 | Esperado 204 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Propietario actualizado S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;,
+  &quot;id&quot;: 6
+}</pre><h3>Respuesta</h3><pre>null</pre></article><article><h2>16. Verificar actualización propietario</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;id&quot;: 6,
+  &quot;nombre&quot;: &quot;Propietario actualizado S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;
+}</pre></article><article><h2>17. Ruta anidada vacía</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/propietarios/6/mascotas</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>[]</pre></article><article><h2>18. Crear mascota solo con FK</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 201 | Esperado 201 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;id&quot;: 4,
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6,
+  &quot;propietario&quot;: null
+}</pre></article><article><h2>19. Consultar mascota con propietario y sin ciclo</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;id&quot;: 4,
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6,
+  &quot;propietario&quot;: {
+    &quot;id&quot;: 6,
+    &quot;nombre&quot;: &quot;Propietario actualizado S12&quot;,
+    &quot;documento&quot;: &quot;36667879&quot;,
+    &quot;telefono&quot;: &quot;999888777&quot;
+  }
+}</pre></article><article><h2>20. Filtros combinados</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/mascotas?propietarioId=6&amp;buscar=temporal&amp;especie=Gato</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>[
+  {
+    &quot;id&quot;: 4,
+    &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+    &quot;especie&quot;: &quot;Gato&quot;,
+    &quot;edad&quot;: 2,
+    &quot;peso&quot;: 4.25,
+    &quot;propietarioId&quot;: 6,
+    &quot;propietario&quot;: {
+      &quot;id&quot;: 6,
+      &quot;nombre&quot;: &quot;Propietario actualizado S12&quot;,
+      &quot;documento&quot;: &quot;36667879&quot;,
+      &quot;telefono&quot;: &quot;999888777&quot;
+    }
+  }
+]</pre></article><article><h2>21. Filtros sin coincidencias</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/mascotas?propietarioId=6&amp;especie=Perro</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>[]</pre></article><article><h2>22. Filtro inválido</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/mascotas?propietarioId=0</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;propietarioId&quot;: [
+      &quot;The field propietarioId must be between 1 and 2147483647.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-9d562497cd625f278ed074e2a09af9be-20d7ef4d426e1bed-00&quot;
+}</pre></article><article><h2>23. Ruta anidada con mascota</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/propietarios/6/mascotas</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>[
+  {
+    &quot;id&quot;: 4,
+    &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+    &quot;especie&quot;: &quot;Gato&quot;,
+    &quot;edad&quot;: 2,
+    &quot;peso&quot;: 4.25,
+    &quot;propietarioId&quot;: 6,
+    &quot;propietario&quot;: null
+  }
+]</pre></article><article><h2>24. Eliminar propietario con dependientes</h2><p>DELETE https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 409 | Esperado 409 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;title&quot;: &quot;Propietario con mascotas&quot;,
+  &quot;status&quot;: 409,
+  &quot;detail&quot;: &quot;Elimina o reasigna sus mascotas antes de eliminar al propietario.&quot;
+}</pre></article><article><h2>25. FK inexistente POST</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 2147483647
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;PropietarioId&quot;: [
+      &quot;El propietario indicado no existe.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-2061177cfa0ef6630e46b28aac38fba4-6fc265eb16249d3c-00&quot;
+}</pre></article><article><h2>26. FK inexistente PUT</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 2147483647,
+  &quot;id&quot;: 4
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;PropietarioId&quot;: [
+      &quot;El propietario indicado no existe.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-d1eb5451fcfd018fa07694368afec804-35741c7df7076491-00&quot;
+}</pre></article><article><h2>27. Range peso automático</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: -1,
+  &quot;propietarioId&quot;: 6
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;Peso&quot;: [
+      &quot;The field Peso must be between 0.01 and 1000.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-9f30da08181c75f9b7e9468ca6b38bf5-91484ffa8c66c078-00&quot;
+}</pre></article><article><h2>28. Range edad automático</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 51,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;Edad&quot;: [
+      &quot;The field Edad must be between 0 and 50.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-8a8d70926517490df0b8c9b5cc66deb5-a6d6e22c4817c312-00&quot;
+}</pre></article><article><h2>29. Required mascota automático</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot; &quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+  &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+  &quot;status&quot;: 400,
+  &quot;errors&quot;: {
+    &quot;Nombre&quot;: [
+      &quot;The Nombre field is required.&quot;
+    ]
+  },
+  &quot;traceId&quot;: &quot;00-60bad03e3581dcbcf21c7f5779e62bba-6e36ab37fb67d62b-00&quot;
+}</pre></article><article><h2>30. Id autogenerado mascota</h2><p>POST https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6,
+  &quot;id&quot;: 999
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;title&quot;: &quot;El Id se genera automáticamente.&quot;,
+  &quot;status&quot;: 400
+}</pre></article><article><h2>31. Id mascota no coincide</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 400 | Esperado 400 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6,
+  &quot;id&quot;: 5
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;title&quot;: &quot;El Id de la ruta debe coincidir con el cuerpo.&quot;,
+  &quot;status&quot;: 400
+}</pre></article><article><h2>32. Actualizar y reasignar mascota</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 204 | Esperado 204 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota actualizada S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 7,
+  &quot;id&quot;: 4
+}</pre><h3>Respuesta</h3><pre>null</pre></article><article><h2>33. Verificar actualización mascota</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 200 | Esperado 200 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;id&quot;: 4,
+  &quot;nombre&quot;: &quot;Mascota actualizada S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 7,
+  &quot;propietario&quot;: {
+    &quot;id&quot;: 7,
+    &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+    &quot;documento&quot;: &quot;84679971&quot;,
+    &quot;telefono&quot;: &quot;999888777&quot;
+  }
+}</pre></article><article><h2>34. Eliminar mascota</h2><p>DELETE https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 204 | Esperado 204 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>null</pre></article><article><h2>35. Mascota inexistente GET</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 404 | Esperado 404 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.5&quot;,
+  &quot;title&quot;: &quot;Not Found&quot;,
+  &quot;status&quot;: 404,
+  &quot;traceId&quot;: &quot;00-e36e4eb9d08a3402bfbaf50a3cfcaa1d-d9f210e985fb0dcb-00&quot;
+}</pre></article><article><h2>36. Mascota inexistente PUT</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 404 | Esperado 404 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Mascota temporal S12&quot;,
+  &quot;especie&quot;: &quot;Gato&quot;,
+  &quot;edad&quot;: 2,
+  &quot;peso&quot;: 4.25,
+  &quot;propietarioId&quot;: 6,
+  &quot;id&quot;: 4
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.5&quot;,
+  &quot;title&quot;: &quot;Not Found&quot;,
+  &quot;status&quot;: 404,
+  &quot;traceId&quot;: &quot;00-dbf8cdbb37b5864acf0a0faf00ce3dc2-27705229e5f0a12e-00&quot;
+}</pre></article><article><h2>37. Mascota inexistente DELETE</h2><p>DELETE https://veterinaria-s12-cris.onrender.com/api/mascotas/4</p><p>HTTP 404 | Esperado 404 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.5&quot;,
+  &quot;title&quot;: &quot;Not Found&quot;,
+  &quot;status&quot;: 404,
+  &quot;traceId&quot;: &quot;00-f986edef01288aca9a52613da131e1e6-5d4270a7b57f95c2-00&quot;
+}</pre></article><article><h2>38. Eliminar propietario</h2><p>DELETE https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 204 | Esperado 204 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>null</pre></article><article><h2>39. Propietario inexistente GET</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 404 | Esperado 404 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.5&quot;,
+  &quot;title&quot;: &quot;Not Found&quot;,
+  &quot;status&quot;: 404,
+  &quot;traceId&quot;: &quot;00-e8d0dfbbbf7bb32588016c0afddf1399-bbf38e858b419b98-00&quot;
+}</pre></article><article><h2>40. Propietario inexistente PUT</h2><p>PUT https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 404 | Esperado 404 | OK</p><h3>Solicitud</h3><pre>{
+  &quot;nombre&quot;: &quot;Prueba temporal S12&quot;,
+  &quot;documento&quot;: &quot;36667879&quot;,
+  &quot;telefono&quot;: &quot;999888777&quot;,
+  &quot;id&quot;: 6
+}</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.5&quot;,
+  &quot;title&quot;: &quot;Not Found&quot;,
+  &quot;status&quot;: 404,
+  &quot;traceId&quot;: &quot;00-0b2f73df6863e23275f3f6cc74b94ff8-b0ff7cfa38e7e754-00&quot;
+}</pre></article><article><h2>41. Propietario inexistente DELETE</h2><p>DELETE https://veterinaria-s12-cris.onrender.com/api/propietarios/6</p><p>HTTP 404 | Esperado 404 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.5&quot;,
+  &quot;title&quot;: &quot;Not Found&quot;,
+  &quot;status&quot;: 404,
+  &quot;traceId&quot;: &quot;00-100a62097b6c72e221fb584609c572a2-90384f1772fdc560-00&quot;
+}</pre></article><article><h2>42. Padre inexistente en ruta anidada</h2><p>GET https://veterinaria-s12-cris.onrender.com/api/propietarios/6/mascotas</p><p>HTTP 404 | Esperado 404 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>{
+  &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.5&quot;,
+  &quot;title&quot;: &quot;Not Found&quot;,
+  &quot;status&quot;: 404,
+  &quot;traceId&quot;: &quot;00-fe2e7601ab0d7c9a7ce9950b49ca7df2-5972368f623eb0c7-00&quot;
+}</pre></article><article><h2>43. CORS origen permitido</h2><p>OPTIONS https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 204 | Esperado 204 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>null</pre></article><article><h2>44. CORS origen ajeno</h2><p>OPTIONS https://veterinaria-s12-cris.onrender.com/api/mascotas</p><p>HTTP 204 | Esperado 204 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>null</pre></article><article><h2>45. Limpieza propietario temporal</h2><p>DELETE https://veterinaria-s12-cris.onrender.com/api/propietarios/7</p><p>HTTP 204 | Esperado 204 | OK</p><h3>Solicitud</h3><pre>null</pre><h3>Respuesta</h3><pre>null</pre></article></html>
