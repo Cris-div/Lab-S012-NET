@@ -12,3 +12,5 @@ services:
         sync: false
       - key: Cors__AllowedOrigin
         sync: false
+      - key: PublicOrigin
+        sync: false

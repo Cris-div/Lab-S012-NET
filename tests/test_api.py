@@ -39,11 +39,19 @@ def call(name, method, path, expected, payload=None, check=None, headers=None):
         response = error
     with response:
         text = response.read().decode()
-        status, received_headers = response.code, dict(response.headers)
+        status = response.code
+        # Los proxies pueden cambiar las mayúsculas; los nombres HTTP no las distinguen.
+        received_headers = {key.title(): value for key, value in response.headers.items()}
     try:
         parsed = json.loads(text) if text else None
     except json.JSONDecodeError:
         parsed = text
+    # Registrar antes de las aserciones para limpiar incluso si falla Location.
+    if method == "POST" and status == 201 and isinstance(parsed, dict) and "id" in parsed:
+        if path == "/api/propietarios":
+            owners.append(parsed["id"])
+        elif path == "/api/mascotas":
+            pets.append(parsed["id"])
     ok = status == expected
     detail = ""
     if ok and check:
@@ -84,12 +92,11 @@ try:
         docs.add(str(secrets.randbelow(90000000) + 10000000))
     doc1, doc2 = docs
     p = call("Crear propietario", "POST", "/api/propietarios", 201, owner(doc1),
-             check=lambda d, h: h.get("Location", "").endswith(f'/api/Propietarios/{d["id"]}'))
+             check=lambda d, h: h.get("Location", "").startswith(base + "/api/")
+             and h["Location"].endswith(f'/api/Propietarios/{d["id"]}'))
     pid = p["id"]
-    owners.append(pid)
     p2 = call("Crear segundo propietario", "POST", "/api/propietarios", 201, owner(doc2))
     pid2 = p2["id"]
-    owners.append(pid2)
     call("Consultar propietario creado", "GET", f"/api/propietarios/{pid}", 200,
          check=lambda d, _: d["documento"] == doc1)
     call("Documento duplicado POST", "POST", "/api/propietarios", 409, owner(doc1))
@@ -106,9 +113,9 @@ try:
          check=lambda d, _: d["nombre"] == "Propietario actualizado S12")
     call("Ruta anidada vacía", "GET", f"/api/propietarios/{pid}/mascotas", 200, check=lambda d, _: d == [])
     m = call("Crear mascota solo con FK", "POST", "/api/mascotas", 201, pet(pid),
-             check=lambda d, h: h.get("Location", "").endswith(f'/api/Mascotas/{d["id"]}'))
+             check=lambda d, h: h.get("Location", "").startswith(base + "/api/")
+             and h["Location"].endswith(f'/api/Mascotas/{d["id"]}'))
     mid = m["id"]
-    pets.append(mid)
     call("Consultar mascota con propietario y sin ciclo", "GET", f"/api/mascotas/{mid}", 200,
          check=lambda d, _: d["propietario"]["id"] == pid and "mascotas" not in d["propietario"])
     call("Filtros combinados", "GET", f"/api/mascotas?propietarioId={pid}&buscar=temporal&especie=Gato", 200,
