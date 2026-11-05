@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: veterinaria-api-s12
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/propietarios
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__Veterinaria
+        sync: false
+      - key: Cors__AllowedOrigin
+        sync: false

@@ -1,0 +1,9 @@
+.git
+.local
+.env*
+**/bin
+**/obj
+artifacts
+TestResults
+tests
+docs

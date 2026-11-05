@@ -1,0 +1,95 @@
+# Cliente REST de VS Code (REST Client) o adaptar en Visual Studio.
+# Para la entrega, reemplazar por la URL HTTPS publicada, sin /swagger.
+@baseUrl = http://localhost:5163
+@documento = 73452619
+@propietarioId = {{crearPropietario.response.body.$.id}}
+@mascotaId = {{crearMascota.response.body.$.id}}
+
+### 200 listar propietarios
+GET {{baseUrl}}/api/propietarios
+
+### 201 crear propietario temporal (cambiar documento si ya existe)
+# @name crearPropietario
+POST {{baseUrl}}/api/propietarios
+Content-Type: application/json
+
+{"nombre":"Prueba HTTP S12","documento":"{{documento}}","telefono":"999888777"}
+
+### 200 consultar propietario
+GET {{baseUrl}}/api/propietarios/{{propietarioId}}
+
+### 409 documento duplicado
+POST {{baseUrl}}/api/propietarios
+Content-Type: application/json
+
+{"nombre":"Duplicado","documento":"{{documento}}","telefono":"999888777"}
+
+### 400 validaciones automáticas
+POST {{baseUrl}}/api/propietarios
+Content-Type: application/json
+
+{"nombre":"","documento":"ABC","telefono":"1"}
+
+### 204 actualizar propietario
+PUT {{baseUrl}}/api/propietarios/{{propietarioId}}
+Content-Type: application/json
+
+{"id":{{propietarioId}},"nombre":"Prueba HTTP actualizada","documento":"{{documento}}","telefono":"999888777"}
+
+### 201 crear mascota solo con FK
+# @name crearMascota
+POST {{baseUrl}}/api/mascotas
+Content-Type: application/json
+
+{"nombre":"Nala HTTP","especie":"Gato","edad":2,"peso":3.8,"propietarioId":{{propietarioId}}}
+
+### 200 listar mascotas
+GET {{baseUrl}}/api/mascotas
+
+### 200 filtros combinados
+GET {{baseUrl}}/api/mascotas?propietarioId={{propietarioId}}&buscar=Nala&especie=Gato
+
+### 200 consultar mascota con propietario
+GET {{baseUrl}}/api/mascotas/{{mascotaId}}
+
+### 200 ruta anidada
+GET {{baseUrl}}/api/propietarios/{{propietarioId}}/mascotas
+
+### 409 propietario con dependientes
+DELETE {{baseUrl}}/api/propietarios/{{propietarioId}}
+
+### 400 FK inexistente
+POST {{baseUrl}}/api/mascotas
+Content-Type: application/json
+
+{"nombre":"FK inexistente","especie":"Gato","edad":2,"peso":3.8,"propietarioId":2147483647}
+
+### 400 Range
+POST {{baseUrl}}/api/mascotas
+Content-Type: application/json
+
+{"nombre":"Peso inválido","especie":"Gato","edad":2,"peso":-1,"propietarioId":{{propietarioId}}}
+
+### 400 id distinto entre ruta y cuerpo
+PUT {{baseUrl}}/api/mascotas/{{mascotaId}}
+Content-Type: application/json
+
+{"id":0,"nombre":"Nala","especie":"Gato","edad":2,"peso":3.8,"propietarioId":{{propietarioId}}}
+
+### 204 actualizar mascota
+PUT {{baseUrl}}/api/mascotas/{{mascotaId}}
+Content-Type: application/json
+
+{"id":{{mascotaId}},"nombre":"Nala actualizada","especie":"Gato","edad":3,"peso":4.1,"propietarioId":{{propietarioId}}}
+
+### 204 eliminar mascota temporal
+DELETE {{baseUrl}}/api/mascotas/{{mascotaId}}
+
+### 404 mascota ya eliminada
+GET {{baseUrl}}/api/mascotas/{{mascotaId}}
+
+### 204 eliminar propietario temporal
+DELETE {{baseUrl}}/api/propietarios/{{propietarioId}}
+
+### 404 propietario ya eliminado
+GET {{baseUrl}}/api/propietarios/{{propietarioId}}
